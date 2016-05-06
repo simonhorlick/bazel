@@ -506,6 +506,10 @@ public class XcodeprojGeneration {
       targetBuildConfigMap.put("FRAMEWORK_SEARCH_PATHS",
           frameworkSearchPaths(targetControl.getFrameworkList()));
 
+      // This is required for Swift.
+      targetBuildConfigMap.put("LD_RUNPATH_SEARCH_PATHS",
+          NSObject.wrap(Arrays.asList("@executable_path/Frameworks")));
+
       targetBuildConfigMap.put("WORKSPACE_ROOT", workspaceRoot.toString());
 
       if (targetControl.hasPchPath()) {
